@@ -1,5 +1,8 @@
 <?php
 
+use App\User;
+use App\category;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +16,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -27,3 +30,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     ];
 });
+
+$factory->define(category::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->word,
+        'Description' => $faker->paragraph(1),
+
+    ];
+});
+
