@@ -1,6 +1,11 @@
 <?php
 
+use App\User;
+use App\product;
+use App\category;
+use App\transaction;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +16,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+    	DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+        User::truncate();
+        category::truncate();
+        product::truncate();
+        transaction::truncate();
+        DB::table('category_product')->truncate();
+
+        $cantidadUsuarios=200;
+        $cantidadCategorias=30;
+        $cantidadProductos=1000;
+        $cantidadTransacciones=1000;
+
+        factory(User::class, $cantidadUsuarios)->create();
+        factory(category::class, $cantidadCategorias)->create();
+        factory(product::class, $cantidadProductos)->create()->each(
+        	function($producto){
+        		$categorias = category::all()->random(mt_rand(1,5))->pluck('id');
+
+        		$producto->categorias()->attach($categorias);
+        	}
+        );
+        factory(transaction::class, $cantidadTransacciones)->create();
     }
 }
