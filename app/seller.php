@@ -7,6 +7,6 @@ use App\product;
 class seller extends user
 {
     public function products(){
-    	$this->hasMany(product::class);
+    	return $this->hasMany(product::class);
     }
 }

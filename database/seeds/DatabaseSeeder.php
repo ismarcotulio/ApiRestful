@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         	function($producto){
         		$categorias = category::all()->random(mt_rand(1,5))->pluck('id');
 
-        		$producto->categorias()->attach($categorias);
+        		$producto->categories()->attach($categorias);
         	}
         );
         factory(transaction::class, $cantidadTransacciones)->create();

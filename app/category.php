@@ -13,6 +13,6 @@ class category extends Model
     ];
 
     public function products(){
-    	$this->belongsToMany(product::class);
+    	return $this->belongsToMany(product::class);
     }
 }

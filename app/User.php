@@ -14,7 +14,9 @@ class User extends Authenticatable
     const USUARIO_NO_VERIFICADO = '0';
 
     const USUARIO_REGULAR = 'false';
-    const USUARIO_ADMINISTRADOR ='true'
+    const USUARIO_ADMINISTRADOR ='true';
+
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
